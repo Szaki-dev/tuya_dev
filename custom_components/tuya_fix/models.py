@@ -58,15 +58,10 @@ class IntegerTypeData(TypeInformation):
 
     def scale_value(self, value: int) -> float:
         """Scale a value."""
-        if self.dpcode in (DPCode.CUR_CURRENT, DPCode.CUR_POWER, DPCode.CUR_VOLTAGE):
-            return value / (10**1)
-        return value / (10**self.scale)
-
+        return value / (10**1)
     def scale_value_back(self, value: float) -> int:
         """Return raw value for scaled."""
-        if self.dpcode in (DPCode.CUR_CURRENT, DPCode.CUR_POWER, DPCode.CUR_VOLTAGE):
-            return int(value * (10**1))
-        return int(value * (10**self.scale))
+        return int(value * (10**1))
 
     def remap_value_to(
         self,
