@@ -58,13 +58,13 @@ class IntegerTypeData(TypeInformation):
 
     def scale_value(self, value: int) -> float:
         """Scale a value."""
-        if self.dpcode in (DPCode.CUR_CURRENT, DPCode.CUR_POWER, DPCode.CUR_VOLTAGE) and self.unit in (UnitOfElectricCurrent.AMPERE, UnitOfPower.WATT, UnitOfElectricPotential.VOLT):
+        if self.dpcode in (DPCode.CUR_CURRENT, DPCode.CUR_POWER, DPCode.CUR_VOLTAGE):
             return value / (10**1)
         return value / (10**self.scale)
 
     def scale_value_back(self, value: float) -> int:
         """Return raw value for scaled."""
-        if self.dpcode in (DPCode.CUR_CURRENT, DPCode.CUR_POWER, DPCode.CUR_VOLTAGE) and self.unit in (UnitOfElectricCurrent.AMPERE, UnitOfPower.WATT, UnitOfElectricPotential.VOLT):
+        if self.dpcode in (DPCode.CUR_CURRENT, DPCode.CUR_POWER, DPCode.CUR_VOLTAGE):
             return int(value * (10**1))
         return int(value * (10**self.scale))
 
